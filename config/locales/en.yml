@@ -1,0 +1,61 @@
+en:
+  interval_qualities:
+    perfect: Perfect
+    major: Major
+    minor: Minor
+  intervals: # Ordered by semitones
+    - name: Unison
+      quality: !ruby/sym perfect
+    - name: Second
+      quality: !ruby/sym minor
+    - name: Second
+      quality: !ruby/sym minor
+  chords:
+    - names:
+        long: Major
+        short: [ ~, 'maj' ]
+      intervals: [ 1, 3, 5 ]
+    - names:
+        short: [ '5', '(no third)' ]
+      intervals: [ 1, 5 ]
+    - names:
+        long: Suspended Second
+        short: [ 'sus2', '5add2' ]
+      intervals: [ 1, 2, 5 ]
+    - names:
+        long: Suspended Fourth
+        short: [ 'sus4', 'sus' ]
+      intervals: [ 1, 4, 5 ]
+    - names:
+        long: Sixth
+        short: '6'
+      intervals: [ 1, 3, 5, 6 ]
+    - names:
+        long: Added Ninth
+        short: 'add9'
+      intervals: [ 1, 3, 5, 9 ]
+    - names:
+        long: Sixth, Added Ninth
+        short: [ '6/9', '6add9' ]
+      intervals: [ 1, 3, 5, 6, 9 ]
+    - names:
+        long: Major Seventh
+        short: [ 'maj7', 'M7' ]
+      intervals: [ 1, 3, 5, 7 ]
+    - names:
+        long: Major Ninth
+        short: [ 'maj9', 'M9' ]
+      intervals: [ 1, 3, 5, 7, 9 ]
+    - names:
+        long: Major Seventh, Sharp Eleventh
+        short: [ 'maj7#11', 'M7#11' ]
+      intervals: [ 1, 3, 5, 7, '#11' ]
+    - names:
+        long: Major Thirteenth
+        short: [ 'maj7#11', 'M7#11' ]
+      intervals: [ 1, 3, 5, 7, 9, 13 ]
+    - names:
+        long: Minor
+        short: [ 'm', 'min', '-' ]
+      intervals: [ 1, b3, 5 ]
+    # TODO: The rest of them =p

@@ -1,0 +1,44 @@
+#!/usr/bin/env ruby
+
+require 'bundler/setup'
+Bundler.require(:development)
+
+require 'pp'
+
+require 'pathname'
+$:.unshift( Pathname.new(__FILE__).join('..', '..', 'lib').expand_path.to_s )
+require 'music_theory/scales'
+# 
+# input = UniMIDI::Input.first
+# 
+# loop do
+#   midi_message = MIDIMessage.parse( input.gets.first[:data] )
+#   
+#   if midi_message.class == MIDIMessage::NoteOn
+#     note_name = midi_message.name.gsub(/[0-9-]/, '')
+#     scale = MusicTheory::Scales::Major.new(note_name)
+#     
+#     puts
+#     puts "Note:\t\t#{ scale.tonic.name }"
+#     puts "MIDI Note:\t#{ midi_message.note }"
+#     puts "Scale:\t\t#{ scale.name }"
+#     puts "Notes:\t\t#{ scale.notes.collect(&:name).join(' ') }"
+#     puts "Naturals:\t#{ scale.naturals.collect(&:name).join(' ') }"
+#     puts "Accidentals:\t#{ scale.accidentals.collect(&:name).join(' ') }"
+#     puts
+#     
+#     scale.degrees.each do |scale_degree|
+#       puts "#{ scale_degree.name }\t#{ "\t" if ['Tonic', 'Mediant'].include?(scale_degree.name) }#{ scale_degree.note.name }\t#{ scale_degree.description }"
+#     end
+#     
+#   end
+#   
+#   sleep 0.1
+# end
+
+scale = MusicTheory::Scales::Major.new('G')
+puts "Scale:\t\t#{ scale.name }"
+puts "Notes:\t\t#{ scale.notes.collect(&:name).join(' ') }"
+puts "Naturals:\t#{ scale.naturals.collect(&:name).join(' ') }"
+puts "Accidentals:\t#{ scale.accidentals.collect(&:name).join(' ') }"
+puts

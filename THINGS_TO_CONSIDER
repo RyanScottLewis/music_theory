@@ -1,0 +1,135 @@
+Reference code:
+  https://github.com/cheerfulstoic/music/tree/master/lib
+
+There are different pitch notations:
+  http://en.wikipedia.org/wiki/Scientific_pitch_notation
+  http://en.wikipedia.org/wiki/Helmholtz_pitch_notation
+  https://en.wikipedia.org/wiki/File:Common_Octave_Naming_Systems.png
+
+There are different tunings:
+  http://en.wikipedia.org/wiki/Musical_tuning
+  http://en.wikipedia.org/wiki/Equal_temperament
+
+There are different types of scales:
+  https://en.wikipedia.org/wiki/Diatonic_scale
+
+Questions I want to be able to answer with this gem:
+  What are the chord names of these notes?
+  What is the frequency of this note?
+  What notes does the Cmaj13 chord consist of?
+  What is the second inversion of the F7 chord?
+  What is the scale degree of the F note on the C major scale?
+  What scales does the G# note appear on and what scale degree?
+  What are the all chord positions in the A minor scale and can I see as roman numeral notation?
+  What are the scale degrees of a set of 4 chords in a specific scale?
+  What about all scales which contain those chords?
+  What is the closest inversion of chord A to chord B? (C maj to F major 1st inversion)
+  What scales do A, B, and C# fit into?
+
+I18n:
+  The note name will depend on the notation and the parser will react according to the notation as well.
+  Words like major, minor, min, maj, diminished, etc should have I18n
+
+Symbols:
+  ♭ flat
+  ' octave of tonic
+  + augmented
+  ° diminished
+  ø half diminished
+  
+We're using UTF for the symbols, so have an option to turn off UTF encoding
+and return the symbol name instead. `MusicTheory.utf_preferred = false`.
+Have a global option AND an option on a "Composition".
+
+Look for a list of UTF music symbols.. time signatures would be nice =)
+
+Universal Key:
+  https://en.wikipedia.org/wiki/Universal_key
+  Roman numeral analysis symbols:
+    Symbol	Meaning	Examples
+    Uppercase Roman numeral	Major triad	I
+    Lowercase Roman numeral	Minor triad	i
+    Superscript °	Diminished triad	i°
+    Superscript +	Augmented triad	I+
+    Superscript number	added note	V7, I6
+    Two or more numbers	figured bass notation	V4 - 3, I6
+    4 (equivalent to Ic)
+    Lowercase b	First inversion	Ib
+    Lowercase c	Second inversion	Ic
+    Lowercase d	Third inversion	V7d
+    
+    http://www.musictheory.net/lessons/43 - Figuring out Diatonic chords of scale
+
+Modes:
+  https://en.wikipedia.org/wiki/Mode_(music)
+  Descriptions:
+    Name	Mode	D'Arezzo	Fulda	Espinosa	Example chant
+    Dorian	I	serious	any feeling	happy, taming the passions	Veni sancte spiritus (listen)
+    Hypodorian	II	sad	sad	serious and tearful	Iesu dulcis amor meus (listen)
+    Phrygian	III	mystic	vehement	inciting anger	Kyrie, fons bonitatis (listen)
+    Hypophrygian	IV	harmonious	tender	inciting delights, tempering fierceness	Conditor alme siderum (listen)
+    Lydian	V	happy	happy	happy	Salve Regina (listen)
+    Hypolydian	VI	devout	pious	tearful and pious	Ubi caritas (listen)
+    Mixolydian	VII	angelical	of youth	uniting pleasure and sadness	Introibo (listen)
+    Hypomixolydian	VIII	perfect	of knowledge	very happy	Ad cenam agni providi (listen)
+  Intervals:
+    Mode	Tonic relative
+    to major scale	Interval sequence	Example
+    Ionian	I	T-T-s-T-T-T-s	C-D-E-F-G-A-B-C
+    Dorian	II	T-s-T-T-T-s-T	D-E-F-G-A-B-C-D
+    Phrygian	III	s-T-T-T-s-T-T	E-F-G-A-B-C-D-E
+    Lydian	IV	T-T-T-s-T-T-s	F-G-A-B-C-D-E-F
+    Mixolydian	V	T-T-s-T-T-s-T	G-A-B-C-D-E-F-G
+    Aeolian	VI	T-s-T-T-s-T-T	A-B-C-D-E-F-G-A
+    Locrian	VII	s-T-T-s-T-T-T	B-C-D-E-F-G-A-B
+
+https://en.wikipedia.org/wiki/Slash_chord
+https://en.wikipedia.org/wiki/Polychord # Mind explosion
+
+
+
+
+
+
+
+
+class Score
+  initialize(name=nil)
+  key             If within a Melody, defaults to the melody's key (but settable)
+  tempo           If within a Melody, defaults to the melody's key (but settable)
+  time_signature  If within a Melody, defaults to the melody's key (but settable)
+  bars            aliased as measures
+
+class TimeSignature
+  initialize(beats, bars)
+  beats
+  bars    aliased as measures
+  to_s    # => 4/4
+
+class Bar
+  initialize(length)  length is in beats, although I dunno why it'd be different than the time_signature
+  notes
+  
+  class is aliased as Measure but it should be used consistantly within library
+
+module BarNote
+  velocity
+  duration
+  beat      the starting beat (somehow...)
+  
+  This will be mixed into Note instances when it is within a Score
+
+class Melody
+  key             If within a Composition, defaults to the melody's key (but settable)
+  tempo           If within a Composition, defaults to the melody's key (but settable)
+  time_signature  If within a Composition, defaults to the melody's key (but settable)
+  scores
+
+class Composition
+  key
+  time_signature
+  melodies
+
+An interval is the distance of two notes on a scale
+A chord has many notes in intervals
+A key is 
